@@ -10,6 +10,8 @@ Author URI: http://webthemez.com/
 	padding: 0;
 	font-family: 'Open Sans', sans-serif;
 }
+
+
 body {
 	height: 100%;
 	font-family: 'Open Sans', sans-serif;
@@ -243,7 +245,7 @@ a:hover {
 	z-index: 5;
 }
 .topHome:hover{
-color:#F89F9F;	
+color:#7a6b6b;	
 	}
 /*  Sliders
 ==================================== */
@@ -543,7 +545,7 @@ content: '';
 /* top: 75px; */
 /* bottom: 0px; */
 }
-.banner-container:after {content: '';position: absolute;width: 100%;top: 0;bottom: 0;background: rgba(241, 0, 0, 0.48);}
+.banner-container:after {content: '';position: absolute;width: 100%;top: 0;bottom: 0;background: rgba(0, 0, 0, 0.48);}
 .banner-container > img {
 	width: 100%;
 }
@@ -1473,4 +1475,73 @@ nav#filter li {
   
   #fileInput {
 	display: none;
+  }
+  .session {
+	margin-bottom: 20px;
+  }
+  .time {
+	/* font-weight: bold; */
+	color:#000
+  }
+
+  .page-section {
+	padding: 60px 0;
+	position: relative;
+  }
+  .prog-container {
+	max-width: 800px;
+	margin: auto;
+	padding: 20px;
+	background: #fff;
+	border-radius: 10px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	position: relative;
+	overflow: hidden;
+  }
+  .session p {
+	margin: 10px 0;
+  }
+  
+  .prog-container:before, .prog-container:after {
+	content: "";
+	position: absolute;
+	background-size: contain;
+	background-repeat: no-repeat;
+  }
+  
+  .prog-container:before {
+	top: -20px;
+	left: -0px;
+	width: 100px;
+	height: 100px;
+	background-image: url('/images/butter_fly.jpg');
+  }
+  
+  .prog-container:after {
+	bottom: -20px;
+	right: -0px;
+	width: 120px;
+	height: 120px;
+	background-image: url('/images/butter_fly.jpg');
+  }
+  
+  @media (max-width: 768px) {
+	.container {
+	  padding: 10px;
+	}
+	h2 {
+	  font-size: 28px;
+	}
+	.session p {
+	  font-size: 14px;
+	}
+  }
+  .general {
+	font-family: 'Arial, sans-serif';
+	background-color: #f4f4f4;
+	margin: 0;
+	padding: 0;
+	color: #000; /* Set text color to black */
+	font-size: 16px; /* Set a comfortable font size */
+	line-height: 1.6; /* Set a line height for readability */
   }
