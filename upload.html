@@ -16,7 +16,7 @@
             justify-content: space-between;
         }
         header, footer {
-            background-color: #2c3e50;
+            background-color: #000000;
             color: white;
             text-align: center;
             padding: 15px 0;
@@ -45,7 +45,7 @@
         .upload-form h2 {
             margin-top: 0;
             margin-bottom: 15px;
-            color: #2c3e50;
+            color: #060707;
         }
         .upload-form input[type="file"] {
             display: block;
@@ -56,7 +56,7 @@
         .upload-form button {
             padding: 12px 25px;
             border: none;
-            background-color: #3498db;
+            background-color: #f55f5f;
             color: #ffffff;
             border-radius: 25px;
             cursor: pointer;
@@ -69,7 +69,7 @@
         }
         .upload-form #status {
             margin-top: 15px;
-            color: #2c3e50;
+            color: #050505;
         }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
@@ -89,52 +89,29 @@
     <footer>
         <p>&copy; 2024 Wedding Memories. All Rights Reserved.</p>
     </footer>
-    <script src="https://apis.google.com/js/api.js"></script>
     <script>
-        function authenticate() {
-            return gapi.auth2.getAuthInstance()
-                .signIn({scope: "https://www.googleapis.com/auth/drive.file"})
-                .then(function() { console.log("Sign-in successful"); },
-                      function(err) { console.error("Error signing in", err); });
-        }
-        function loadClient() {
-            gapi.client.setApiKey("YOUR_API_KEY");
-            return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/drive/v3/rest")
-                .then(function() { console.log("GAPI client loaded for API"); },
-                      function(err) { console.error("Error loading GAPI client for API", err); });
-        }
-        function uploadFiles() {
-            var files = document.getElementById("fileInput").files;
+        async function uploadFiles() {
+            const files = document.getElementById("fileInput").files;
             if (files.length > 0) {
-                var accessToken = gapi.auth2.getAuthInstance().currentUser.get().getAuthResponse().access_token;
-                for (var i = 0; i < files.length; i++) {
-                    var file = files[i];
-                    var metadata = {
-                        'name': file.name,
-                        'mimeType': file.type
-                    };
-                    var form = new FormData();
-                    form.append("metadata", new Blob([JSON.stringify(metadata)], { type: "application/json" }));
-                    form.append("file", file);
-                    fetch("https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart", {
-                        method: "POST",
-                        headers: new Headers({ "Authorization": "Bearer " + accessToken }),
-                        body: form,
-                    }).then((response) => {
-                        console.log(response);
-                        document.getElementById("status").innerText = "Upload successful!";
-                    }).catch((error) => {
-                        console.error(error);
-                        document.getElementById("status").innerText = "Upload failed!";
+                const formData = new FormData();
+                for (let i = 0; i < files.length; i++) {
+                    formData.append('files', files[i]);
+                }
+                try {
+                    const response = await fetch('http://localhost:3000/upload', {
+                        method: 'POST',
+                        body: formData
                     });
+                    const result = await response.text();
+                    document.getElementById("status").innerText = result;
+                } catch (error) {
+                    console.error(error);
+                    document.getElementById("status").innerText = "Upload failed!";
                 }
             } else {
                 alert("Please select files first.");
             }
         }
-        gapi.load("client:auth2", function() {
-            gapi.auth2.init({client_id: "YOUR_CLIENT_ID"});
-        });
     </script>
 </body>
 </html>
