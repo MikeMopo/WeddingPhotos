@@ -1510,18 +1510,18 @@ nav#filter li {
   }
   
   .prog-container:before {
-	top: -20px;
-	left: -0px;
+	top: -0px;
+	left: +2px;
 	width: 100px;
 	height: 100px;
 	background-image: url('/images/butter_fly.jpg');
   }
   
   .prog-container:after {
-	bottom: -20px;
-	right: -0px;
-	width: 120px;
-	height: 120px;
+	bottom: -0px;
+	right: +2px;
+	width: 100px;
+	height: 100px;
 	background-image: url('/images/butter_fly.jpg');
   }
   
